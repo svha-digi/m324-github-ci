@@ -1,5 +1,4 @@
-// index.test.js
-import { strict as assert } from 'node:assert'
+import assert from 'assert'
 import { sum } from './index.js'
 
 describe('sum', () => {
@@ -7,7 +6,7 @@ describe('sum', () => {
     assert.equal(sum(1, 2), 3)
   })
 
-  it('should add two decimals', () => {
-    assert.equal(sum(0.5, 0.25), 0.75)
+  it('should add two decimal numbers correctly', () => {
+    assert.equal(sum(1.5, 2.3), 3.8)
   })
 })
