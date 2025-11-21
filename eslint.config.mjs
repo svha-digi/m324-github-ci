@@ -1,23 +1,23 @@
 import js from '@eslint/js'
 import globals from 'globals'
-import tseslint from 'typescript-eslint'
-import { defineConfig } from 'eslint/config'
 
-export default defineConfig([
+export default [
+  js.configs.recommended,
   {
-    files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
-    plugins: { js },
-    extends: ['js/recommended'],
-    languageOptions: { globals: globals.browser },
-  },
-  { files: ['**/*.js'], languageOptions: { sourceType: 'script' } },
-  tseslint.configs.recommended,
-
-  // own rules:
-  {
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.mocha, // Mocha-Globals: describe, it, before, after, etc.
+      },
+    },
     rules: {
-      eqeqeq: 'error',
+      'no-unused-vars': 'error',
+      'no-undef': 'error',
+      'prefer-const': 'error',
       'no-var': 'error',
     },
   },
-])
+]
